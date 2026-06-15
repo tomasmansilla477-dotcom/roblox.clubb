@@ -16,6 +16,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- MONETAG — In-Page Push | Zone 11150527 -->
+  <script>(function(s){s.dataset.zone='11150527',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+
+  <!-- MONETAG — Vignette Banner | Zone 11150530 -->
+  <script>(function(s){s.dataset.zone='11150530',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
   <style>
     /* ─── Design Tokens ─── */
     :root {
@@ -923,6 +929,23 @@
     #scroll-top.visible { display: flex; }
     #scroll-top:hover { border-color: var(--border-c); color: var(--cyan); }
 
+    /* ─── Ad Disclosure Label ─── */
+    .ad-disclosure {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(249,115,22,0.08);
+      border: 1px solid rgba(249,115,22,0.2);
+      color: var(--orange);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
     /* ─── Divider ─── */
     .divider { height: 1px; background: var(--border); margin: 20px 0; }
 
@@ -1010,9 +1033,10 @@
     <button class="modal-close" onclick="closeModal('privacy')" aria-label="Close privacy policy">&#10005;</button>
     <h4 id="modal-privacy-title">Privacy Policy</h4>
     <p>At <strong>Roblox Codes Hub</strong>, your privacy matters. This policy explains how we collect, use, and protect your information.</p>
-    <p><strong>Data collected:</strong> This site may collect anonymous browsing data through third-party cookies for advertising and analytics purposes.</p>
-    <p><strong>Third-party cookies:</strong> We may use third-party advertising services that set cookies in your browser to show relevant ads.</p>
-    <p><strong>Your rights:</strong> You can request deletion of your data or reject cookies through your browser settings at any time.</p>
+    <p><strong>Advertising:</strong> This site uses <strong>Monetag</strong> to display ads, including Vignette Banners, In-Page Push notifications, and Direct Link (SmartLink) ads. Monetag may use cookies and device identifiers to serve relevant advertisements.</p>
+    <p><strong>Data collected:</strong> Anonymous browsing data may be collected by Monetag and its partners for ad targeting and frequency capping. No personally identifiable information is collected by this site directly.</p>
+    <p><strong>Third-party cookies:</strong> Monetag and advertising partners may set cookies in your browser. You can opt out at any time via your browser settings or the <a href="https://optout.networkadvertising.org/" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:underline">NAI opt-out page</a>.</p>
+    <p><strong>Your rights:</strong> California residents have additional rights under CCPA. You can request deletion of your data or opt out of data sales by adjusting your browser&apos;s privacy settings or contacting us via the form on this page.</p>
     <p class="modal-meta">Last updated: June 2026</p>
   </div>
 </div>
@@ -1045,7 +1069,8 @@
     <h1>Roblox Active Codes <em>2026</em></h1>
     <p class="hero-sub">The most up-to-date codes for Blox Fruits, Adopt Me, Murder Mystery 2, Arsenal, and Brookhaven. Copy in one click, redeem in seconds.</p>
     <div class="hero-actions">
-      <a class="btn-primary" href="#codes">Browse Active Codes</a>
+      <!-- Monetag SmartLink point #1: hero CTA -->
+      <a class="btn-primary" href="#codes" onclick="openSmartLink()">Browse Active Codes</a>
       <button class="btn-ghost" onclick="copyPageLink()">Share this page</button>
     </div>
   </header>
@@ -1431,6 +1456,7 @@
     <div class="footer-left">
       <p>&copy; 2026 Roblox Codes Hub. All rights reserved.</p>
       <p>Not affiliated with or endorsed by Roblox Corporation.</p>
+      <p style="margin-top:6px">This site displays ads via Monetag. <button onclick="openModal('privacy')" style="background:none;border:none;color:var(--cyan);font-size:0.78rem;padding:0;cursor:pointer;text-decoration:underline;font-family:inherit">See our Privacy Policy</button>.</p>
     </div>
     <nav class="footer-links" aria-label="Footer links">
       <button onclick="openModal('privacy')">Privacy Policy</button>
@@ -1440,6 +1466,32 @@
 </footer>
 
 <script>
+  /* ═══════════════════════════════════════════════════════
+     MONETAG — 3 Direct Links (SmartLinks)
+     Each fires in a different high-intent moment:
+       SL_HERO    → hero CTA click  (highest traffic)
+       SL_COPY    → every code Copy button click  (most frequent)
+       SL_ENGAGE  → Copy Script + Show guide tips  (high engagement)
+  ═══════════════════════════════════════════════════════ */
+  var SL_HERO   = 'https://omg10.com/4/11150492';
+  var SL_COPY   = 'https://omg10.com/4/11150491';
+  var SL_ENGAGE = 'https://omg10.com/4/11150447';
+
+  /* Cooldown: same SmartLink won't fire more than once every 90s
+     to avoid annoying the user and getting flagged by Monetag */
+  var _slLast = {};
+  function _fireLink(url) {
+    var now = Date.now();
+    if (_slLast[url] && now - _slLast[url] < 90000) return;
+    _slLast[url] = now;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
+  /* Public helpers used by HTML onclick and JS events */
+  function openSmartLink()       { _fireLink(SL_HERO);   }
+  function openSmartLinkCopy()   { _fireLink(SL_COPY);   }
+  function openSmartLinkEngage() { _fireLink(SL_ENGAGE); }
+
   /* ─── Hamburger / Mobile Drawer ─── */
   const hamburger = document.getElementById('hamburger');
   const drawer = document.getElementById('nav-drawer');
@@ -1502,33 +1554,53 @@
     }
   }
   document.querySelectorAll('.copy-btn[data-code]').forEach(btn => {
-    btn.addEventListener('click', () => copyText(btn.dataset.code, btn, 'Copy'));
+    btn.addEventListener('click', () => {
+      copyText(btn.dataset.code, btn, 'Copy');
+      openSmartLinkCopy(); /* SL_COPY — fires on every code copy */
+    });
   });
   function copyPageLink() {
     const btn = document.querySelector('.btn-ghost');
     copyText(window.location.href, btn, 'Share this page');
   }
 
-  /* ─── Script Copy ─── */
+  /* ─── Script Copy (Monetag SmartLink point #2) ─── */
   function copyScript() {
     const text = document.getElementById('script-content').innerText;
     const btn = document.getElementById('copy-script-btn');
+    const fallback = () => {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    };
+    const onSuccess = () => {
+      btn.textContent = 'Script Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy Script'; btn.classList.remove('copied'); }, 2500);
+      /* Fire SL_ENGAGE after script is copied */
+      openSmartLinkEngage();
+    };
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(() => {
-        btn.textContent = 'Script Copied!';
-        btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = 'Copy Script'; btn.classList.remove('copied'); }, 2500);
-      });
+      navigator.clipboard.writeText(text).then(onSuccess).catch(() => { fallback(); onSuccess(); });
+    } else {
+      fallback();
+      onSuccess();
     }
   }
 
-  /* ─── Guide Expand Toggle ─── */
+  /* ─── Guide Expand Toggle (Monetag SmartLink points #3 & #4) ─── */
   function toggleGuide(id, btn) {
     const el = document.getElementById(id);
     if (!el) return;
     const isOpen = el.style.display === 'block';
     el.style.display = isOpen ? 'none' : 'block';
     if (btn) btn.textContent = isOpen ? 'Show guide tips' : 'Hide guide tips';
+    /* Fire SL_ENGAGE only when opening (not closing) */
+    if (!isOpen) openSmartLinkEngage();
   }
 
   /* ─── FAQ Accordion ─── */
