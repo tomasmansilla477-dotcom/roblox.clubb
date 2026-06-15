@@ -1481,24 +1481,30 @@
 
 <script>
   /* ═══════════════════════════════════════════════════════
-     MONETAG — Direct Link (SmartLink)
-     Replace YOUR_SMARTLINK_URL with your Monetag SmartLink URL.
-     This URL is used on 4 monetized buttons across the page:
-       1. Hero CTA "Browse Active Codes"
-       2. Scripts "Copy Script" button (after copy, opens SmartLink)
-       3. Guide tip buttons x2 (Arsenal & MM2)
-     ─────────────────────────────────────────────────────
-     HOW IT WORKS: When the user clicks one of these buttons
-     the SmartLink opens in a new tab (non-intrusive), while
-     the button's original action (copy / expand) still runs.
+     MONETAG — 3 Direct Links (SmartLinks)
+     Each fires in a different high-intent moment:
+       SL_HERO    → hero CTA click  (highest traffic)
+       SL_COPY    → every code Copy button click  (most frequent)
+       SL_ENGAGE  → Copy Script + Show guide tips  (high engagement)
   ═══════════════════════════════════════════════════════ */
-  var MONETAG_SMARTLINK = 'YOUR_SMARTLINK_URL';
+  var SL_HERO   = 'https://omg10.com/4/11150492';
+  var SL_COPY   = 'https://omg10.com/4/11150491';
+  var SL_ENGAGE = 'https://omg10.com/4/11150447';
 
-  function openSmartLink() {
-    if (MONETAG_SMARTLINK && MONETAG_SMARTLINK !== 'YOUR_SMARTLINK_URL') {
-      window.open(MONETAG_SMARTLINK, '_blank', 'noopener,noreferrer');
-    }
+  /* Cooldown: same SmartLink won't fire more than once every 90s
+     to avoid annoying the user and getting flagged by Monetag */
+  var _slLast = {};
+  function _fireLink(url) {
+    var now = Date.now();
+    if (_slLast[url] && now - _slLast[url] < 90000) return;
+    _slLast[url] = now;
+    window.open(url, '_blank', 'noopener,noreferrer');
   }
+
+  /* Public helpers used by HTML onclick and JS events */
+  function openSmartLink()       { _fireLink(SL_HERO);   }
+  function openSmartLinkCopy()   { _fireLink(SL_COPY);   }
+  function openSmartLinkEngage() { _fireLink(SL_ENGAGE); }
 
   /* ─── Hamburger / Mobile Drawer ─── */
   const hamburger = document.getElementById('hamburger');
@@ -1562,7 +1568,10 @@
     }
   }
   document.querySelectorAll('.copy-btn[data-code]').forEach(btn => {
-    btn.addEventListener('click', () => copyText(btn.dataset.code, btn, 'Copy'));
+    btn.addEventListener('click', () => {
+      copyText(btn.dataset.code, btn, 'Copy');
+      openSmartLinkCopy(); /* SL_COPY — fires on every code copy */
+    });
   });
   function copyPageLink() {
     const btn = document.querySelector('.btn-ghost');
@@ -1586,8 +1595,8 @@
       btn.textContent = 'Script Copied!';
       btn.classList.add('copied');
       setTimeout(() => { btn.textContent = 'Copy Script'; btn.classList.remove('copied'); }, 2500);
-      /* Fire SmartLink after script is copied */
-      openSmartLink();
+      /* Fire SL_ENGAGE after script is copied */
+      openSmartLinkEngage();
     };
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(onSuccess).catch(() => { fallback(); onSuccess(); });
@@ -1604,8 +1613,8 @@
     const isOpen = el.style.display === 'block';
     el.style.display = isOpen ? 'none' : 'block';
     if (btn) btn.textContent = isOpen ? 'Show guide tips' : 'Hide guide tips';
-    /* Fire SmartLink only when opening (not closing) */
-    if (!isOpen) openSmartLink();
+    /* Fire SL_ENGAGE only when opening (not closing) */
+    if (!isOpen) openSmartLinkEngage();
   }
 
   /* ─── FAQ Accordion ─── */
