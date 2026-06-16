@@ -1171,18 +1171,18 @@
       <div class="trust-chip" role="listitem">Community verified</div>
     </div>
 
-    <!-- AD PLACEMENT 1: Featured Offer (hero secondary CTA) — SmartLink SL_HERO -->
-    <a class="ad-offer" href="https://omg10.com/4/11150492" target="_blank" rel="noopener noreferrer sponsored" aria-label="Featured offer">
+    <!-- Daily Rewards Tip — real content + SmartLink on CTA only -->
+    <div class="ad-offer" style="cursor:default;" aria-label="Daily rewards tip">
       <div class="ad-offer-left">
         <div class="ad-offer-icon" aria-hidden="true">&#127381;</div>
         <div>
-          <div class="ad-offer-badge">Featured Offer</div>
-          <div class="ad-offer-title">Daily Roblox rewards &amp; bonus codes</div>
-          <div class="ad-offer-sub">Check today&apos;s exclusive drops before they expire</div>
+          <div class="ad-offer-badge">Daily Tip</div>
+          <div class="ad-offer-title">Get free Robux via Microsoft Rewards</div>
+          <div class="ad-offer-sub">Search on Bing daily &rarr; earn points &rarr; redeem for official Robux Gift Cards &mdash; 100% ToS-safe</div>
         </div>
       </div>
-      <span class="ad-offer-cta">Check Now</span>
-    </a>
+      <a class="ad-offer-cta" href="https://omg10.com/4/11150492" target="_blank" rel="noopener noreferrer sponsored" onclick="openSmartLink(); return false;">Check Now</a>
+    </div>
   </header>
 
   <!-- ═══ CODES SECTION ═══ -->
@@ -1403,15 +1403,34 @@
 
     </div><!-- /codes-container -->
 
-    <!-- AD PLACEMENT 2: After Blox Fruits codes block — SmartLink SL_COPY -->
-    <a class="ad-mid" id="ad-after-codes" href="https://omg10.com/4/11150491" target="_blank" rel="noopener noreferrer sponsored" aria-label="Sponsored offer">
-      <div>
-        <p class="ad-mid-label">Sponsored</p>
-        <p class="ad-mid-text">Want more free Roblox rewards?</p>
-        <p class="ad-mid-sub">See today&apos;s best offers for Roblox players in the US</p>
+    <!-- Daily Rewards Checklist — real content block with sponsored CTA -->
+    <div class="ad-mid" id="ad-after-codes" style="cursor:default;flex-direction:column;align-items:stretch;gap:12px;" aria-label="Daily rewards checklist">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+        <div>
+          <p class="ad-mid-label">Daily Checklist</p>
+          <p class="ad-mid-text">Free Roblox Rewards You Can Claim Today</p>
+        </div>
+        <a class="ad-mid-btn" href="https://omg10.com/4/11150491" target="_blank" rel="noopener noreferrer sponsored" onclick="openSmartLinkCopy(); return false;" style="text-decoration:none;">Bonus Offers</a>
       </div>
-      <span class="ad-mid-btn">See Offers</span>
-    </a>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:7px;padding:0;margin:0;">
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:0.82rem;color:var(--text-2);line-height:1.5;">
+          <span style="color:var(--green);font-weight:800;flex-shrink:0;">&#10003;</span>
+          <span><strong style="color:var(--text-1);">Blox Fruits</strong> &mdash; Redeem the 6 active codes above for 2&times; EXP boosts before they expire.</span>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:0.82rem;color:var(--text-2);line-height:1.5;">
+          <span style="color:var(--green);font-weight:800;flex-shrink:0;">&#10003;</span>
+          <span><strong style="color:var(--text-1);">Adopt Me</strong> &mdash; Log in daily to grow your Login Streak and unlock the Summer 2026 event currency.</span>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:0.82rem;color:var(--text-2);line-height:1.5;">
+          <span style="color:var(--green);font-weight:800;flex-shrink:0;">&#10003;</span>
+          <span><strong style="color:var(--text-1);">Microsoft Rewards</strong> &mdash; Search 3 things on Bing today &rarr; earn points &rarr; redeem for a Robux Gift Card.</span>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:0.82rem;color:var(--text-2);line-height:1.5;">
+          <span style="color:var(--green);font-weight:800;flex-shrink:0;">&#10003;</span>
+          <span><strong style="color:var(--text-1);">Arsenal</strong> &mdash; Redeem codes <em style="color:var(--cyan);">enforcer</em>, <em style="color:var(--cyan);">TRGTBOARD</em>, and <em style="color:var(--cyan);">ROLVE</em> for the rare Fanboy skin + 2 taunts.</span>
+        </li>
+      </ul>
+    </div>
 
   </section>
 
@@ -1561,16 +1580,35 @@
 
 </main>
 
-<!-- AD PLACEMENT 3: Footer exit — SmartLink SL_ENGAGE -->
+<!-- More Resources block — real links + one sponsored CTA -->
 <div class="ad-footer-banner">
-  <a class="ad-footer-inner" href="https://omg10.com/4/11150447" target="_blank" rel="noopener noreferrer sponsored" aria-label="Sponsored exit offer">
-    <div>
-      <p class="ad-footer-label">Sponsored</p>
-      <p class="ad-footer-text"><strong>Looking for more Roblox content?</strong></p>
-      <p class="ad-footer-text">Discover exclusive deals and bonus drops for US players</p>
+  <div class="ad-footer-inner" style="cursor:default;flex-direction:column;align-items:stretch;gap:14px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+      <div>
+        <p class="ad-footer-label">More Resources</p>
+        <p class="ad-footer-text"><strong>Keep growing your Roblox account</strong></p>
+      </div>
+      <a class="ad-footer-btn" href="https://omg10.com/4/11150447" target="_blank" rel="noopener noreferrer sponsored" onclick="openSmartLinkEngage(); return false;" style="text-decoration:none;">Bonus Drops</a>
     </div>
-    <span class="ad-footer-btn">Explore</span>
-  </a>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;">
+      <a href="https://www.roblox.com/promocodes" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;gap:3px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:11px 13px;text-decoration:none;transition:border-color 0.15s;" onmouseover="this.style.borderColor='var(--border-c)'" onmouseout="this.style.borderColor='var(--border)'">
+        <span style="font-size:0.78rem;font-weight:700;color:var(--text-1);">Official Roblox Promo Codes</span>
+        <span style="font-size:0.72rem;color:var(--text-3);">roblox.com &rarr; redeem avatar items free</span>
+      </a>
+      <a href="https://www.microsoft.com/en-us/rewards" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;gap:3px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:11px 13px;text-decoration:none;transition:border-color 0.15s;" onmouseover="this.style.borderColor='var(--border-c)'" onmouseout="this.style.borderColor='var(--border)'">
+        <span style="font-size:0.78rem;font-weight:700;color:var(--text-1);">Microsoft Rewards</span>
+        <span style="font-size:0.72rem;color:var(--text-3);">Search on Bing &rarr; earn points &rarr; redeem Robux</span>
+      </a>
+      <a href="https://www.youtube.com/@Blox_Fruits" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;gap:3px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:11px 13px;text-decoration:none;transition:border-color 0.15s;" onmouseover="this.style.borderColor='var(--border-c)'" onmouseout="this.style.borderColor='var(--border)'">
+        <span style="font-size:0.78rem;font-weight:700;color:var(--text-1);">Blox Fruits Official YouTube</span>
+        <span style="font-size:0.72rem;color:var(--text-3);">New codes announced in every video</span>
+      </a>
+      <a href="https://www.reddit.com/r/bloxfruits/" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;gap:3px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:11px 13px;text-decoration:none;transition:border-color 0.15s;" onmouseover="this.style.borderColor='var(--border-c)'" onmouseout="this.style.borderColor='var(--border)'">
+        <span style="font-size:0.78rem;font-weight:700;color:var(--text-1);">r/bloxfruits Community</span>
+        <span style="font-size:0.72rem;color:var(--text-3);">Trading, strategies &amp; code alerts</span>
+      </a>
+    </div>
+  </div>
 </div>
 
 <footer>
